@@ -1,0 +1,13 @@
+input{
+  margin: 10px;
+}
+.jumbotron{
+  background-color: inherit;
+}
+.answerRow{
+  display: inline-block;
+}
+
+.hidden{
+  display: none;
+}
