@@ -2,6 +2,7 @@ const fs = require('fs');
 const questionModel = require('./questionSchema');
 let currentQuestionNo;
 let playerScore = 0;
+let playerQuestion = [];
 
 const getRandomQuestion = (callback) => {
     //console.log('callback ',callback);
@@ -38,6 +39,10 @@ const getPlayerScore = () =>{
     return playerScore;
 }
 
+const resetPlayerScore = () =>{
+    playerScore = 0;
+}
+
 const getCurrentQuestionNo = () => {
     return currentQuestionNo;
 }
@@ -46,10 +51,6 @@ module.exports = {
     getRandomQuestion,
     processAnswer,
     getPlayerScore,
-    getCurrentQuestionNo
+    getCurrentQuestionNo,
+    resetPlayerScore,
 };
-
-
-
-
-

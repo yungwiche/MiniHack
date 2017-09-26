@@ -8,23 +8,23 @@ router.get('/', (req, res) => {
             res.render('game', {
                 questionNo: questionController.getCurrentQuestionNo(),
                 question: question,
-                score: questionController.getPlayerScore().question,
-                question2: hidden,
-                question6: hidden
+                score: questionController.getPlayerScore(),
+                question2: "hidden",
+                question6: "hidden"
             });
         }else if (question._id == 6){
             res.render('game', {
                 questionNo: questionController.getCurrentQuestionNo(),
                 question: question,
-                score: questionController.getPlayerScore().question,
+                score: questionController.getPlayerScore(),
             });
         }
         else{
             res.render('game', {
                 questionNo: questionController.getCurrentQuestionNo(),
                 question: question,
-                score: questionController.getPlayerScore().question,
-                question6: hidden
+                score: questionController.getPlayerScore(),
+                question6: "hidden"
             });
         }
     })
