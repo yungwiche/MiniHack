@@ -1,0 +1,11 @@
+.btnContainer{
+  text-align: center;
+}
+.jumbotron{
+  background-color: rgb(56, 54, 53);
+  margin-top: 80px;
+}
+body{
+  color: white;
+  background: black;
+}

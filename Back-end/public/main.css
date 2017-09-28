@@ -43,3 +43,14 @@ input{
   width: 45px;
   background: gray;
 }
+
+.btn[value="Chọn"]{
+  width: auto;
+  background: gray;
+  color: white;
+  margin-top: 20px;
+}
+
+input[type="Number"]{
+  width: 200px;
+}
