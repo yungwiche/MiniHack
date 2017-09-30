@@ -157,7 +157,7 @@ const getAnswerCountByQuestionId = (id, answer, callback) => {
     _id: id
   }, (err, question) => {
     if (err) console.log(err)
-    else callback(question.answer);
+    else callback(question[answer]);
   });
 }
 
@@ -462,6 +462,14 @@ const setPlayerWinByIp = (playerIp, questionNo, callback) => {
   });
 }
 
+const getChartData = (id, ip, callback) => {
+  questionModel.findOne({_id: id}, (err, question) => {
+    playerModel.findOne({_ip: ip}, (err, player) => {
+      callback(question, player);
+    });
+  });
+}
+
 module.exports = {
   getNextQuestion,
   processAnswer,
@@ -469,5 +477,8 @@ module.exports = {
   getCurrentQuestionNoByIp,
   getTotalPlayerNo,
   getPlayerByIp,
-  setPlayerWinByIp
+  setPlayerWinByIp,
+  getChartData,
+  getTotalAnswerCountByQuestionId,
+  getMedianAnswerFromQuestionId
 };

@@ -2,23 +2,117 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>Câu hỏi {{questionNo}}</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <meta charset="utf-8">
+  <title>Câu hỏi {{questionNo}}</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/main.css">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+  <script type="text/javascript">
+    google.charts.load('current', {
+      'packages': ['corechart']
+    });
+
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var jsonDataContainer = [];
+      $.ajax({
+        type: 'get',
+        url: "/chart/1",
+        dataType: "json",
+        success: (jsonData1) => {
+          $.ajax({
+            type: 'get',
+            url: "/chart/2",
+            dataType: "json",
+            success: (jsonData2) => {
+              $.ajax({
+                type: 'get',
+                url: "/chart/3",
+                dataType: "json",
+                success: (jsonData3) => {
+                  $.ajax({
+                    type: 'get',
+                    url: "/chart/4",
+                    dataType: "json",
+                    success: (jsonData4) => {
+                      $.ajax({
+                        type: 'get',
+                        url: "/chart/5",
+                        dataType: "json",
+                        success: (jsonData5) => {
+                          $.ajax({
+                            type: 'get',
+                            url: "/chart/6",
+                            dataType: "json",
+                            success: (jsonData6) => {
+                              jsonDataContainer.push(jsonData1, jsonData2, jsonData3, jsonData4, jsonData5, jsonData6);
+                              for (id = 0; id < 6; id++) {
+                                console.log(id);
+                                if (jsonDataContainer[id] != null) {
+                                  var data = google.visualization.arrayToDataTable(jsonDataContainer[id]);
+                                  var options = {
+                                    title: 'Câu hỏi ' + (id + 1),
+                                    vAxis: {
+                                      title: 'Người chơi'
+                                    },
+                                    hAxis: {
+                                      title: 'Số'
+                                    },
+                                    seriesType: 'bars',
+                                    series: {
+                                      1: {
+                                        type: 'line'
+                                      }
+                                    },
+                                    'width': 550,
+                                    'height': 275,
+                                    'chartArea': {
+                                      'left': '80',
+                                      'top': '45',
+                                      'bottom': '60',
+                                      'right': '106',
+                                      'width': '50%',
+                                      'height': '50%'
+                                    },
+                                  };
+                                  var chart = new google.visualization.ComboChart(document.getElementById('graph-' + (id + 1) + '-container'));
+                                  chart.draw(data, options);
+                                } else {
+                                  $('#graph-' + (id + 1) + '-container').css({
+                                    'border': 'none',
+                                    'margin': '0px',
+                                    'display': 'inline'
+                                  });
+                                }
+                              }
+                            }
+                          });
+                        }
+                      });
+                    }
+                  });
+                }
+              });
+            }
+          });
+        }
+      });
+    }
+  </script>
 </head>
 
 <body>
-{{{body}}}
-<div class="img-container">
-  <img src="interrogation.png" alt="">
-</div>
+  {{{body}}}
+  <div class="img-container">
+    <img src="interrogation.png" alt="">
+  </div>
 
 </body>
 

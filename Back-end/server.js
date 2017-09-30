@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 const viewRouter = require("./viewRouter.js");
 const questionModel = require('./questionSchema');
 const playerSchema = require('./playerSchema');
-const controller = require('./controller.js')
+const controller = require('./controller.js');
+const chartRouter = require('./chartRouter.js');
 
 let app = express();
 
@@ -17,6 +18,7 @@ app.engine('handlebars', handlebars({
 }));
 app.set('view engine', 'handlebars');
 app.use('/game', viewRouter);
+app.use('/chart', chartRouter);
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/rule.html');
 });

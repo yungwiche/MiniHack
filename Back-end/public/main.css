@@ -1,56 +1,126 @@
-body{
+body {
   color: white;
   background: black;
 }
 
-form{
-  display: inline-block;
+input {
+  text-align: center;
+}
+
+.jumbotron h1 {
+  font-size: 30px;
+}
+
+.jumbotron h2 {
+  font-size: 20px;
+}
+
+.jumbotron {
+  background-color: rgb(56, 54, 53);
+  margin-top: 20px;
+}
+
+.answerRow {
+  text-align: center;
+}
+
+.answerRow form:not(:first-child) {
   margin-top: 10px;
   margin-left: 5px;
   margin-right: 5px;
 }
 
-input{
-  text-align: center;
+.answerRow form:first-child {
+  margin-top: 10px;
+  margin-right: 5px;
 }
 
-.jumbotron h1{
-  font-size: 30px;
+form {
+  display: inline-block;
 }
 
-.jumbotron h2{
-  font-size: 20px;
-}
-
-.jumbotron{
-  background-color: rgb(56, 54, 53);
-  margin-top: 20px;
-}
-
-.answerRow{
-  text-align: center;
-}
-
-.hidden{
+.hidden {
   display: none;
 }
 
-.img-container{
+.img-container {
   text-align: center;
 }
 
-.btn{
+.graph-container {
+  text-align: center;
+}
+
+.graph-container .graph:not(:first-child) {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.graph-container .graph:first-child {
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.graph-container .graph:hover {
+  margin: 0px;
+  z-index: 99;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  zoom: 2.3;
+}
+
+img {
+  z-index: -1;
+}
+
+.btn {
   width: 45px;
   background: gray;
 }
 
-.btn[value="Chọn"]{
+.btn:hover {
+  color: black;
+  width: 45px;
+  background: white;
+}
+
+.btn:focus {
+  color: black;
+  width: 45px;
+  background: white;
+  outline: none;
+}
+
+.btn[value="Chọn"] {
   width: auto;
   background: gray;
   color: white;
   margin-top: 20px;
 }
 
-input[type="Number"]{
+.btn[value="Chọn"]:hover {
+  width: auto;
+  background: white;
+  color: black;
+  margin-top: 20px;
+}
+
+.btn[value="Chọn"]:focus {
+  width: auto;
+  background: white;
+  color: black;
+  margin-top: 20px;
+  outline: none;
+}
+
+input[type="Number"] {
   width: 200px;
+}
+
+.graph {
+  zoom: 0.3;
+  display: inline-block;
 }
