@@ -419,7 +419,7 @@ const getTotalPlayerWinNo = (callback) => {
     else {
       var count = 0;
       for (player in playerList) {
-        if (player.score >= 30) count++;
+        if (playerList[player].score >= 30) count++;
       }
       callback(count);
     }
@@ -463,10 +463,23 @@ const setPlayerWinByIp = (playerIp, questionNo, callback) => {
 }
 
 const getChartData = (id, ip, callback) => {
-  questionModel.findOne({_id: id}, (err, question) => {
-    playerModel.findOne({_ip: ip}, (err, player) => {
+  questionModel.findOne({
+    _id: id
+  }, (err, question) => {
+    playerModel.findOne({
+      _ip: ip
+    }, (err, player) => {
       callback(question, player);
     });
+  });
+}
+
+const getAllPlayerAnswerQuestion4 = (callback) => {
+  playerModel.find({}, '4', (err, answerList) => {
+    if (err) console.log(err);
+    else {
+      callback(answerList);
+    }
   });
 }
 
@@ -480,5 +493,7 @@ module.exports = {
   setPlayerWinByIp,
   getChartData,
   getTotalAnswerCountByQuestionId,
-  getMedianAnswerFromQuestionId
+  getMedianAnswerFromQuestionId,
+  getAllPlayerAnswerQuestion4,
+  getTotalPlayerWinNo
 };
